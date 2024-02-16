@@ -54,7 +54,15 @@ But when explicitly requesting v2.0.0 it tells me the go module name should be
 updated to reflect the major version change (as v1.x.x doesn't require a v1 in
 the module name). This error would also indicate why (no matter how long you
 wait) the [test-go-binary@v2.0.0](https://pkg.go.dev/github.com/integralist/test-go-binary@v2.0.0)
-never works (not without first changing the module name).
+never works (you need a `test-go-binary/v2` path instead).
+
+With a v2.0.0 git tag + go module name now including `/v2`:
+
+> **NOTE:** You need [pkg.go.dev/github.com/integralist/test-go-binary/v2](https://pkg.go.dev/github.com/integralist/test-go-binary/v2)
+
+```shell
+$ go install github.com/integralist/test-go-binary/v2@latest
+```
 
 ## Reference
 
