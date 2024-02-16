@@ -34,8 +34,29 @@ $ go install github.com/integralist/test-go-binary@latest
 go: downloading github.com/integralist/test-go-binary v1.0.0
 ```
 
-> **NOTE:** Wait for [pkg.go.dev/github.com/integralist/test-go-binary](https://pkg.go.dev/github.com/integralist/test-go-binary)
+> **NOTE:** Wait for [pkg.go.dev/github.com/integralist/test-go-binary](https://pkg.go.dev/github.com/integralist/test-go-binary) (here's the [v1.0.0](https://pkg.go.dev/github.com/integralist/test-go-binary@v1.0.0) which takes a while to be published).
+
+With a v2.0.0 git tag:
+
+```shell
+$ go install github.com/integralist/test-go-binary@latest
+
+# no output
+
+$ go install github.com/integralist/test-go-binary@v2.0.0
+
+go: github.com/integralist/test-go-binary@v2.0.0: github.com/integralist/test-go-binary@v2.0.0: invalid version: module contains a go.mod file, so module path must match major version ("github.com/integralist/test-go-binary/v2")
+```
+
+It seems to install the previous version, which was the v1.0.0 tag.
+
+But when explicitly requesting v2.0.0 it tells me the go module name should be
+updated to reflect the major version change (as v1.x.x doesn't require a v1 in
+the module name). This error would also indicate why (no matter how long you
+wait) the [test-go-binary@v2.0.0](https://pkg.go.dev/github.com/integralist/test-go-binary@v2.0.0)
+never works (not without first changing the module name).
 
 ## Reference
 
+- [v2-go-modules](https://go.dev/blog/v2-go-modules)
 - [cmd/go](https://pkg.go.dev/cmd/go#hdr-Compile_and_install_packages_and_dependencies)
